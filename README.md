@@ -13,3 +13,6 @@
 - Go
 - MySQL
 - AWS
+
+* server run 
+$ node index.js

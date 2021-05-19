@@ -53,9 +53,9 @@ const nearPlaces = [
 ]
 
 
-router.get('/nearPlace',(req, res, next) => {
+router.get('/',(req, res, next) => {
     res.send(nearPlaces);
 });
 
-module.exports = router;
+module.exports = router
 
