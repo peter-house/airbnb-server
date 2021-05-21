@@ -16,13 +16,15 @@ app.listen(3000, function () {
 });
 
 ////
-
+const passport = require('./lib/passport');
 const placeRouter = require("./routers/nearPlace");
 const specialWayRouter = require("./routers/specialWay");
 const whereverPlacesRouter = require("./routers/whereverPlaces");
 const bottomMenuRouter = require("./routers/bottomMenu");
 const locationRouter = require("./routers/location");
 
+
+app.use('/auth/google',passport);
 app.use('/place', placeRouter);
 app.use('/special_way',specialWayRouter);
 app.use('/whereverPlaces',whereverPlacesRouter);
@@ -30,6 +32,9 @@ app.use('/bottomMenus', bottomMenuRouter);
 app.use('/location', locationRouter);
 
 
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+
