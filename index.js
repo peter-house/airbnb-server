@@ -2,7 +2,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 const cors = require('cors')
-const bodyParser = require('body-parser');                                                                     
+const bodyParser = require('body-parser');      
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
 
 //body-parser
 app.use(bodyParser.json());
@@ -34,13 +37,30 @@ app.use('/whereverPlaces',whereverPlacesRouter);
 app.use('/bottomMenus', bottomMenuRouter);
 app.use('/location', locationRouter);
 
+// Use session with Mongo
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: "mongodb+srv://aaaa:aaaa@cluster0.q3dj2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    collection: session,
+})
+}));
 
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
 
 app.post('/', (req, res) => {
-  res.send(req.body);
-
+  // res.send(req.body);
+  if(!req.session.num) {
+    req.session.num = 1;
+  } else {
+    req.session.num += 1;
+  }
+  res.send('Hello ' + req.session.num);
 })
+
+
 
