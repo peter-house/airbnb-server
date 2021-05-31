@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
-
 //body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
@@ -22,13 +21,13 @@ app.listen(3000, function () {
   console.log('CORS-enabled web server listening on port 3000')
 });
 
-////
 // const passport = require('./lib/passport');
 const placeRouter = require("./routers/nearPlace");
 const specialWayRouter = require("./routers/specialWay");
 const whereverPlacesRouter = require("./routers/whereverPlaces");
 const bottomMenuRouter = require("./routers/bottomMenu");
 const locationRouter = require("./routers/location");
+const { Session } = require('express-session');
 
 // app.use('/auth/google',passport);
 app.use('/place', placeRouter);
@@ -43,7 +42,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({
-    mongoUrl: "mongodb+srv://aaaa:aaaa@cluster0.q3dj2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    mongoUrl: "mongodb+srv://aaaa:aaaa@cluster0.q3dj2.mongodb.net/airbb?retryWrites=true&w=majority",
     collection: session,
 })
 }));
@@ -54,13 +53,14 @@ app.use(session({
 
 app.post('/', (req, res) => {
   // res.send(req.body);
-  if(!req.session.num) {
-    req.session.num = 1;
+  if(!req.session.number) {
+    req.session.number = 1;
   } else {
-    req.session.num += 1;
+    req.session.number += 1;
   }
-  res.send('Hello ' + req.session.num);
+  res.send('Hello ' + req.session.number);
 })
 
-
-
+app.get('/',(req, res) => {
+  console.log(req.session)
+})
