@@ -4,7 +4,7 @@
 - [Installation](#Installation)  
 - [Tech](#Tech)  
 - [Usage](#Usage)  
-- [Features](#Features)  
+
 
 
 [Airbnb웹사이트](https://www.airbnb.co.kr/)를 클론 합니다.
@@ -27,8 +27,6 @@
 >## Usage
 - localhost:3000 환경에서 실행됩니다.
 
-
->## Features
 
 
 
