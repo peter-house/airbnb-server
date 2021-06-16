@@ -32,7 +32,7 @@ app.listen(3000, (err) => {
   } else {
     mongoose.connect(process.env.MONGODB_URL, {useUnifiedTopology: true, useNewUrlParser: true }, err => {
       if(err) {
-        console.log("erㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜㅜ");
+        console.log("err");
       }else{
         console.log('connected to data gㅎㅎ');
       }
